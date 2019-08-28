@@ -1,0 +1,159 @@
+﻿
+
+/* item */
+
+.unesting-item
+{
+  position: relative;
+  text-align: left;
+  background: #fff;
+}
+
+.unesting-item.ui-sortable-placeholder
+{
+  background: #f3f3f5;
+  border: 1px solid #e9e9eb;
+  visibility: visible !important;
+  height: 55px;
+  margin-top: -1px;
+}
+
+/* header */
+
+.unesting-item-header
+{
+  border-bottom: 1px solid #e9e9eb;
+  cursor: pointer;
+  background-color: #fff;
+  user-select: none;
+}
+
+.unesting-item-header-inner
+{
+  line-height: 20px;
+  position: relative;
+  margin-top: 1px;
+  padding: 15px 5px;
+  color: #1b264f;
+  border-radius: 3px 3px 0 0;
+}
+
+.unesting-item-header-inner i
+{
+  position: absolute;
+  top: 50%;
+  margin-top: -11px;
+  font-size: 1.2rem;
+}
+
+.unesting-item-header-content.--has-icon
+{
+  padding-left: 40px;
+}
+
+.unesting-item-header:hover .unesting-item-header-inner .unesting-item-header-content
+{
+  padding-right: 130px;
+}
+
+.unesting-item-header-content
+{
+  line-height: 20px;
+  color: #1b264f;
+  white-space: nowrap;
+}
+
+.unesting-item-header-content-name
+{
+  max-height: 20px;
+}
+
+.unesting-item-header-content-text
+{
+  color: #817f85;
+  font-size: 13px;
+}
+
+/* icons */
+
+.unesting-icons
+{
+  opacity: 0;
+  transition: opacity .12s ease-in-out;
+  position: absolute;
+  right: 0;
+  top: 3px;
+  padding: 5px;
+  margin-top: 8px;
+  display: flex;
+  grid-gap: 8px;
+}
+
+.unesting-item-header:hover .unesting-icons
+{
+  opacity: 1;
+}
+
+.unesting-icon
+{
+  display: flex;
+  flex-direction: row;
+  width: 32px;
+  height: 32px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  border: 1px solid #e9e9eb;
+  cursor: pointer;
+  color: #1b264f;
+  transition: background 0.12s ease;
+}
+
+.unesting-icon:hover
+{
+  background: #f6f4f4;
+  color: #2152a3;
+  text-decoration: none;
+}
+
+.unesting-icon.is-more i
+{
+  font-size: 4px;
+  line-height: 4px;
+  height: 3px;
+  width: 3px;
+  border-radius: 50%;
+  background: #1b264f;
+  display: inline-block;
+  margin: 0 1px;
+  opacity: .6;
+}
+
+.unesting-icon .icon
+{
+  font-size: 0.9rem;
+}
+
+.unesting-icon--disabled
+{
+  opacity: .3;
+}
+
+.unesting-more-container
+{
+  position: relative;
+}
+
+.unesting-more-dropdown
+{
+  right: 0;
+  left: auto;
+}
+
+
+/* data type overrides */
+
+.unesting-item .umb-sortable-thumbnails li
+{
+  background: none;
+}

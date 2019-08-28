@@ -1,0 +1,9 @@
+﻿{
+  "javascript": [
+    "~/App_Plugins/brothers.uNesting/interceptor.js",
+    "~/App_Plugins/brothers.uNesting/uNesting.controller.js"
+  ],
+  "css": [
+    "~/App_Plugins/brothers.uNesting/uNesting.css"
+  ]
+}
