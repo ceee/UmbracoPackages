@@ -151,9 +151,44 @@
 }
 
 
+/* content */
+
+.unesting-content .unesting-item-header,
+.unesting-content .unesting-item
+{
+  background: none;
+}
+
+
+/* footer */
+
+.unesting-footer
+{ 
+  text-align: left;
+}
+
+.unesting-items:not(.is-hidden) + .unesting-footer
+{
+  margin-top: 20px;
+}
+
+
 /* data type overrides */
 
 .unesting-item .umb-sortable-thumbnails li
 {
   background: none;
+}
+
+
+/* generic overrides */
+
+.btn-info
+{
+  color: #454957;
+}
+
+.btn
+{
+  font-size: 14px;
 }
