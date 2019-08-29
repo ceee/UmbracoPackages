@@ -395,10 +395,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Plugins\brothers.uNesting\interceptor.js" />
-    <Content Include="App_Plugins\brothers.uNesting\uNesting.controller.js" />
     <Content Include="App_Plugins\brothers.uNesting\uNesting.css" />
+    <Content Include="App_Plugins\brothers.uNesting\uNesting.docTypePicker.html" />
     <Content Include="App_Plugins\brothers.uNesting\uNesting.html" />
+    <Content Include="App_Plugins\brothers.uNesting\uNesting.js" />
     <Content Include="App_Plugins\brothers.uNesting\_nc.js" />
     <Content Include="App_Plugins\Cultiv.Tabify\directives\ct-tabbed-content.html" />
     <Content Include="App_Plugins\Cultiv.Tabify\directives\cttabbedcontent.directive.js" />
@@ -470,6 +470,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MediaExtendedController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -490,7 +491,6 @@
     <Content Include="App_Plugins\StarterKit\backoffice\tours\create-content.json" />
     <Content Include="App_Plugins\StarterKit\backoffice\tours\data-structure.json" />
     <Content Include="App_Plugins\StarterKit\package.manifest" />
-    <Content Include="App_Plugins\brothers.uNesting\elements.json" />
     <None Include="App_Plugins\brothers.uNesting\package.manifest" />
     <None Include="packages.config" />
     <Content Include="Views\Web.config" />

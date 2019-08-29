@@ -14,6 +14,10 @@ angular.module('umbraco.services').config(['$httpProvider', function ($httpProvi
         {
           request.url = '/App_Plugins/brothers.uNesting/uNesting.doctypepicker.html';
         }
+        else if (request.url.indexOf(Umbraco.Sys.ServerVariables.umbracoSettings.umbracoPath + "/views/propertyeditors/nestedcontent/nestedcontent.editor.html") === 0)
+        {
+          request.url = '/App_Plugins/brothers.uNesting/uNesting.editor.html';
+        }
 
         return request || $q.when(request);
       }
@@ -24,7 +28,7 @@ angular.module('umbraco.services').config(['$httpProvider', function ($httpProvi
 
 
 
-angular.module("umbraco").controller("brothers.uNesting.DocTypePickerController", function ($scope)
+angular.module("umbraco").controller("brothers.uNesting.DocTypePickerController", function ($scope, $controller)
 {
   angular.extend(this, $controller('Umbraco.PropertyEditors.NestedContent.DocTypePickerController', { $scope: $scope }));
 });
@@ -33,6 +37,20 @@ angular.module("umbraco").controller("brothers.uNesting.DocTypePickerController"
 angular.module("umbraco").controller("brothers.uNesting.PropertyEditorController", function ($scope, $controller, $http, $compile)
 {
   angular.extend(this, $controller('Umbraco.PropertyEditors.NestedContent.PropertyEditorController', { $scope: $scope }));
+
+  $scope.clickHide = function ($event, node)
+  {
+    //syncCurrentNode();
+    console.info(node);
+    $event.stopPropagation();
+    //clipboardService.copy("elementType", node.contentTypeAlias, node);
+    //$event.stopPropagation();
+  };
+
+  $scope.canHide = function (item)
+  {
+    return typeof item['uNestingHide'] !== 'undefined';
+  };
 });
 
 
