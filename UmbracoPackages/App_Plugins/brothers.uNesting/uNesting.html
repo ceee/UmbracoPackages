@@ -22,7 +22,7 @@
             <i ng-if="showIcons" class="icon" ng-class="$parent.getIcon($index)"></i>
             <div class="unesting-item-header-content" ng-class="{'--has-icon': showIcons}">
               <div class="unesting-item-header-content-name" ng-bind="node.contentTypeName"></div>
-              <div class="unesting-item-header-content-text" ng-bind-html="getView(node, $index)"></div>
+              <div class="unesting-item-header-content-text" ng-if="node.uNestingContent" ng-bind-html="node.uNestingContent"></div>
             </div>
           </div>
 

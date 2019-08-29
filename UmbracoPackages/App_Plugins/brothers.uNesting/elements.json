@@ -1,0 +1,15 @@
+{
+  "text": {
+    "html": "text"
+  },
+  "button": {
+    "text": "text",
+    "link":  "url"
+  },
+  "images": {
+    "items": "media"
+  },
+  "xblocks": {
+    "items": "list"
+  }
+}
