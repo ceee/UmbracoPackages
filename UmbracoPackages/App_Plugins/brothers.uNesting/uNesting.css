@@ -18,14 +18,48 @@
   margin-top: -1px;
 }
 
+.unesting-items
+{
+  margin-top: -15px;
+}
+/*.unesting-item .unesting-items
+{
+  background-color: #f9f7f7;
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,.16);
+}*/
 /* header */
-
 .unesting-item-header
 {
-  border-bottom: 1px solid #e9e9eb;
+  border-bottom: 1px solid #f6f6f7;
   cursor: pointer;
   background-color: #fff;
   user-select: none;
+  position: relative;
+}
+
+.unesting-item.is-active > .unesting-item-header:after,
+.unesting-item.is-active > .unesting-item-header:before
+{
+  position: absolute;
+  content: ' ';
+  display: inline-block;
+  left: 5px;
+  bottom: -19px;
+  border: 10px solid transparent;
+  border-top-color: white;
+  width: 0;
+  height: 0;
+}
+
+.unesting-item.is-active > .unesting-item-header:before
+{
+  bottom: -21px;
+  border-top-color: #e9e9eb;
+}
+
+.unesting-item:last-child .unesting-item-header
+{
+  border-bottom: none;
 }
 
 .unesting-item-header-inner
@@ -36,19 +70,42 @@
   padding: 15px 5px;
   color: #1b264f;
   border-radius: 3px 3px 0 0;
+  border-bottom: none;
+  background: none;
 }
 
-.unesting-item-header-inner i
+/*.unesting-item:nth-child(2n+1) .unesting-item-header-inner
+{
+  background: #faf9f9;
+}*/
+
+.unesting-item-header-inner > i
 {
   position: absolute;
   top: 50%;
-  margin-top: -11px;
-  font-size: 1.2rem;
+  margin-top: -13px;
+  left: 3px;
+  font-size: 1.4rem;
+  z-index: 1;
 }
 
 .unesting-item-header-content.--has-icon
 {
-  padding-left: 40px;
+  margin-left: 40px;
+  padding-left: 20px;
+  border-left: 1px solid #f6f6f7;
+}
+
+.unesting-item-header-content-iconbg
+{
+  display: none;
+  position: absolute;
+  left: -46px;
+  width: 46px;
+  top: -16px;
+  background: #faf9f9;
+  z-index: 0;
+  bottom: -15px;
 }
 
 .unesting-item-header:hover .unesting-item-header-inner .unesting-item-header-content
@@ -61,11 +118,14 @@
   line-height: 20px;
   color: #1b264f;
   white-space: nowrap;
+  position: relative;
 }
 
 .unesting-item-header-content-name
 {
   max-height: 20px;
+  font-weight: 600;
+  font-size: 14px;
 }
 
 .unesting-item-header-content-text
@@ -73,6 +133,9 @@
   color: #817f85;
   font-size: 13px;
   overflow: hidden;
+  margin-top: 4px;
+  display: block;
+  line-height: 18px;
 }
 
 /* icons */
@@ -83,9 +146,9 @@
   transition: opacity .12s ease-in-out;
   position: absolute;
   right: 0;
-  top: 3px;
+  top: 50%;
   padding: 5px;
-  margin-top: 8px;
+  margin-top: -22px;
   display: flex;
   grid-gap: 8px;
 }
@@ -128,6 +191,7 @@
   display: inline-block;
   margin: 0 1px;
   opacity: .6;
+  position: static;
 }
 
 .unesting-icon .icon
@@ -160,11 +224,91 @@
   background: none;
 }
 
+.unesting-content > .umb-pane
+{
+  margin: 30px 20px;
+}
+
+.unesting-item.is-active > .unesting-content
+{
+  background: #faf9f9;
+  margin: 0 -20px;
+  border-left: none;
+  border-right: none;
+  border-radius: 0;
+  border-top: 1px solid #e9e9eb;
+}
+
+.unesting-content .unesting-item.is-active > .unesting-content
+{
+  background: white;
+  margin: 0 -20px;
+  border-left: 1px solid #e9e9eb;
+}
+
+.unesting-item.is-active > .unesting-item-header
+{
+  border-bottom: none;
+}
+
+
+/* media */
+.unesting-media
+{
+  display: flex;
+  flex-direction: row;
+  margin-top: 4px;
+}
+
+.unesting-media-item
+{
+  border-radius: 3px;
+  margin-right: 6px;
+  display: flex;
+  align-items: center;
+}
+
+.unesting-media-item.has-title
+{
+  margin-right: 12px;
+}
+
+.unesting-media-item-image
+{
+  background: #f6f4f4;
+  border-radius: 3px;
+  border: 1px solid #f6f6f7;
+}
+
+.unesting-media-item-text
+{
+  padding: 0 10px;
+  max-width: 100px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
+
+.unesting-media-more
+{
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  background: #f6f4f4;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  border-radius: 3px;
+}
+
 
 /* footer */
-
 .unesting-footer
-{ 
+{
   text-align: left;
 }
 
@@ -174,11 +318,22 @@
 }
 
 
-/* data type overrides */
+/* doctypepicker */
+.unesting-doctype-textarea
+{
+  width: 100%;
+  height: 32px;
+  max-height: 200px;
+  min-height: 32px;
+  padding-top: 6px;
+  resize: vertical;
+}
 
+
+/* data type overrides */
 .unesting-item .umb-sortable-thumbnails li
 {
-  background: none;
+  /*background: none;*/
 }
 
 

@@ -1,4 +1,121 @@
-﻿angular.module("umbraco").controller("Umbraco.PropertyEditors.NestedContent.PropertyEditorController", [
+﻿angular.module("umbraco").controller("Umbraco.PropertyEditors.NestedContent.DocTypePickerController", [
+
+  "$scope",
+  "Umbraco.PropertyEditors.NestedContent.Resources",
+
+  function ($scope, ncResources)
+  {
+
+    $scope.add = function ()
+    {
+      $scope.model.value.push({
+        // As per PR #4, all stored content type aliases must be prefixed "nc" for easier recognition.
+        // For good measure we'll also prefix the tab alias "nc"
+        ncAlias: "",
+        ncTabAlias: "",
+        nameTemplate: ""
+      });
+    }
+
+    $scope.canAdd = function ()
+    {
+      return !$scope.model.docTypes || !$scope.model.value || $scope.model.value.length < $scope.model.docTypes.length;
+    }
+
+    $scope.remove = function (index)
+    {
+      $scope.model.value.splice(index, 1);
+    }
+
+    $scope.sortableOptions = {
+      axis: "y",
+      cursor: "move",
+      handle: ".handle",
+      placeholder: 'sortable-placeholder',
+      forcePlaceholderSize: true,
+      helper: function (e, ui)
+      {
+        // When sorting table rows, the cells collapse. This helper fixes that: https://www.foliotek.com/devblog/make-table-rows-sortable-using-jquery-ui-sortable/
+        ui.children().each(function ()
+        {
+          $(this).width($(this).width());
+        });
+        return ui;
+      },
+      start: function (e, ui)
+      {
+
+        var cellHeight = ui.item.height();
+
+        // Build a placeholder cell that spans all the cells in the row: https://stackoverflow.com/questions/25845310/jquery-ui-sortable-and-table-cell-size
+        var cellCount = 0;
+        $('td, th', ui.helper).each(function ()
+        {
+          // For each td or th try and get it's colspan attribute, and add that or 1 to the total
+          var colspan = 1;
+          var colspanAttr = $(this).attr('colspan');
+          if (colspanAttr > 1)
+          {
+            colspan = colspanAttr;
+          }
+          cellCount += colspan;
+        });
+
+        // Add the placeholder UI - note that this is the item's content, so td rather than tr - and set height of tr
+        ui.placeholder.html('<td colspan="' + cellCount + '"></td>').height(cellHeight);
+      }
+    };
+
+    $scope.docTypeTabs = {};
+
+    ncResources.getContentTypes().then(function (docTypes)
+    {
+      $scope.model.docTypes = docTypes;
+
+      // Count doctype name occurrences
+      var docTypeNameOccurrences = _.countBy(docTypes, 'name');
+
+      // Populate document type tab dictionary
+      // And append alias to name if multiple doctypes have the same name
+      docTypes.forEach(function (value)
+      {
+        $scope.docTypeTabs[value.alias] = value.tabs;
+
+        value.displayName = value.name;
+
+        if (docTypeNameOccurrences[value.name] > 1)
+        {
+          value.displayName += " (" + value.alias + ")";
+        }
+      });
+    });
+
+    $scope.selectableDocTypesFor = function (config)
+    {
+      // return all doctypes that are:
+      // 1. either already selected for this config, or
+      // 2. not selected in any other config
+      return _.filter($scope.model.docTypes, function (docType)
+      {
+        return docType.alias === config.ncAlias || !_.find($scope.model.value, function (c)
+        {
+          return docType.alias === c.ncAlias;
+        });
+      });
+    }
+
+    if (!$scope.model.value)
+    {
+      $scope.model.value = [];
+      $scope.add();
+    }
+  }
+]);
+
+
+
+
+angular.module("umbraco").controller("Umbraco.PropertyEditors.NestedContent.PropertyEditorController", [
 
   "$scope",
   "$interpolate",
