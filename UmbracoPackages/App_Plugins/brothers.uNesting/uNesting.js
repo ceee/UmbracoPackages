@@ -34,6 +34,8 @@ angular.module("umbraco").controller("brothers.uNesting.DocTypePickerController"
 });
 
 
+
+
 angular.module("umbraco").controller("brothers.uNesting.PropertyEditorController", function ($scope, $controller, $http, $compile)
 {
   angular.extend(this, $controller('Umbraco.PropertyEditors.NestedContent.PropertyEditorController', { $scope: $scope }));
@@ -57,7 +59,6 @@ angular.module("umbraco").controller("brothers.uNesting.PropertyEditorController
     return item['uNestingHide'] === '1';
   };
 });
-
 
 
 
@@ -411,6 +412,129 @@ angular.module('umbraco.directives').directive('unConfig', function ($filter)
     }
   };
 });
+
+
+
+angular.module("umbraco.directives").directive('uNestingContentEditor', [
+
+  function ()
+  {
+    var link = function ($scope)
+    {
+      // Clone the model because some property editors
+      // do weird things like updating and config values
+      // so we want to ensure we start from a fresh every
+      // time, we'll just sync the value back when we need to
+      $scope.model = angular.copy($scope.ngModel);
+      $scope.nodeContext = $scope.model;
+
+      // Find the selected tab
+      var selectedTab = $scope.model.variants[0].tabs[0];
+
+      if ($scope.tabAlias)
+      {
+        angular.forEach($scope.model.variants[0].tabs, function (tab)
+        {
+          if (tab.alias.toLowerCase() === $scope.tabAlias.toLowerCase())
+          {
+            selectedTab = tab;
+            return;
+          }
+        });
+      }
+
+      $scope.tab = selectedTab;
+
+      // get content and settings properties
+      $scope.contentProperties = _.filter($scope.tab.properties, function (prop)
+      {
+        return prop.propertyAlias.indexOf("uNesting") !== 0;
+      });
+      $scope.settingsProperties = _.filter($scope.tab.properties, function (prop)
+      {
+        return prop.propertyAlias.indexOf("uNesting") === 0;
+      });
+      $scope.hasSettings = $scope.settingsProperties.length > 0;
+
+      // Listen for sync request
+      var unsubscribe = $scope.$on("ncSyncVal", function (ev, args)
+      {
+        if (args.key === $scope.model.key)
+        {
+
+          // Tell inner controls we are submitting
+          $scope.$broadcast("formSubmitting", { scope: $scope });
+
+          // Sync the values back
+          angular.forEach($scope.ngModel.variants[0].tabs, function (tab)
+          {
+            if (tab.alias.toLowerCase() === selectedTab.alias.toLowerCase())
+            {
+
+              var localPropsMap = selectedTab.properties.reduce(function (map, obj)
+              {
+                map[obj.alias] = obj;
+                return map;
+              }, {});
+
+              angular.forEach(tab.properties, function (prop)
+              {
+                if (localPropsMap.hasOwnProperty(prop.alias))
+                {
+                  prop.value = localPropsMap[prop.alias].value;
+                }
+              });
+
+            }
+          });
+        }
+      });
+
+      $scope.$on('$destroy', function ()
+      {
+        unsubscribe();
+      });
+    };
+
+    return {
+      restrict: "E",
+      replace: true,
+      templateUrl: Umbraco.Sys.ServerVariables.umbracoSettings.umbracoPath + "/views/propertyeditors/nestedcontent/nestedcontent.editor.html",
+      scope: {
+        ngModel: '=',
+        tabAlias: '='
+      },
+      link: link
+    };
+
+  }
+]);
+
+//angular.module("umbraco.directives").directive('nestedContentSubmitWatcher', function () {
+//    var link = function (scope) {
+//        // call the load callback on scope to obtain the ID of this submit watcher
+//        var id = scope.loadCallback();
+//        scope.$on("formSubmitting", function (ev, args) {
+//            // on the "formSubmitting" event, call the submit callback on scope to notify the nestedContent controller to do it's magic
+//            if (id === scope.activeSubmitWatcher) {
+//                scope.submitCallback();
+//            }
+//        });
+//    }
+
+//    return {
+//        restrict: "E",
+//        replace: true,
+//        template: "",
+//        scope: {
+//            loadCallback: '=',
+//            submitCallback: '=',
+//            activeSubmitWatcher: '='
+//        },
+//        link: link
+//    }
+//});
+
 
 
 

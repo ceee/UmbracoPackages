@@ -550,6 +550,22 @@ un-config
 }
 
 
+/* editor */
+
+.unesting-editor-pane.has-settings
+{
+  display: grid;
+  grid-template-columns: 1fr 300px;
+}
+
+.unesting-editor-pane-settings
+{
+  border-left: 1px solid #e9e9eb;
+  padding-left: 20px;
+  margin-left: 20px;
+}
+
+
 /* data type overrides */
 
 .unesting-item[unesting-alias="headline"] .unesting-text-partial[unesting-index="0"],

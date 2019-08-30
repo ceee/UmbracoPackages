@@ -1,13 +1,26 @@
-﻿<div class="umb-pane">
-  <div ng-repeat="property in tab.properties" class="umb-nested-content-property-container">
+﻿<div class="umb-pane unesting-editor-pane" ng-class="{ 'has-settings': hasSettings }">
+  <div class="unesting-editor-pane-content">
+    <div ng-repeat="property in contentProperties" class="umb-nested-content-property-container">
 
-    <umb-property property="property" unesting-property="{{property.propertyAlias}}" ng-class="{'umb-nested-content--not-supported': property.notSupported}">
-      <umb-property-editor model="property"></umb-property-editor>
-    </umb-property>
+      <umb-property property="property" unesting-property="{{property.propertyAlias}}" ng-class="{'umb-nested-content--not-supported': property.notSupported}">
+        <umb-property-editor model="property"></umb-property-editor>
+      </umb-property>
 
-    <div ng-if="property.notSupported" class="umb-nested-content-overlay"></div>
+      <div ng-if="property.notSupported" class="umb-nested-content-overlay"></div>
+      <p ng-if="property.notSupported">{{property.notSupportedMessage}}</p>
 
-    <p ng-if="property.notSupported">{{property.notSupportedMessage}}</p>
+    </div>
+  </div>
+  <div class="unesting-editor-pane-settings" ng-if="hasSettings">
+    <div ng-repeat="property in settingsProperties" class="umb-nested-content-property-container">
 
+      <umb-property property="property" unesting-property="{{property.propertyAlias}}" ng-class="{'umb-nested-content--not-supported': property.notSupported}">
+        <umb-property-editor model="property"></umb-property-editor>
+      </umb-property>
+
+      <div ng-if="property.notSupported" class="umb-nested-content-overlay"></div>
+      <p ng-if="property.notSupported">{{property.notSupportedMessage}}</p>
+
+    </div>
   </div>
 </div>
