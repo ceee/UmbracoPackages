@@ -67,7 +67,7 @@
                 <i class="icon icon-trash-alt"></i>
               </a>
 
-              <a class="unesting-icon is-negative hidden-toggle" localize="title" title="general_visibility" ng-if="canHide(model.value[$index])"  ng-click="clickHide($event, node, ncTabAlias);" prevent-default>
+              <a class="unesting-icon is-negative hidden-toggle" localize="title" title="general_visibility" ng-if="canHide(model.value[$index])"  ng-click="clickHide($event, node, $index);" prevent-default>
                 <i class="icon icon-lock"></i>
               </a>
             </div>

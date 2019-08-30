@@ -637,7 +637,7 @@ angular.module("umbraco").controller("brothers.uNesting.PropertyEditorController
       unsubscribe();
     });
 
-    $scope.clickHide = function ($event, node, alias)
+    $scope.clickHide = function ($event, node, $index)
     {
       $event.preventDefault();
       $event.stopPropagation();
@@ -656,24 +656,13 @@ angular.module("umbraco").controller("brothers.uNesting.PropertyEditorController
       if (property)
       {
         property.value = property.value === '1' ? '0' : '1';
-
         $scope.setDirty();
 
         if ($scope.inited)
         {
-          var newValues = [];
-          for (var i = 0; i < $scope.nodes.length; i++)
-          {
-            newValues.push(convertNodeIntoNCEntry($scope.nodes[i]));
-          }
-          $scope.model.value = newValues;
+          $scope.model.value[$index] = convertNodeIntoNCEntry(node);
         }
       }
-
-      //if ($scope.realCurrentNode)
-      //{
-      //  $scope.$broadcast("ncSyncInVal", { key: $scope.realCurrentNode.key });
-      //}
     };
 
     $scope.canHide = function (item)
