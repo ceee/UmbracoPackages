@@ -49,10 +49,10 @@
   opacity: 0.4;
 }
 
-.unesting-item.is-hidden .unesting-item-header-content-text
+/*.unesting-item.is-hidden .unesting-item-header-content-text
 {
   display: none;
-}
+}*/
 
 .unesting-item.is-active > .unesting-item-header:after,
 .unesting-item.is-active > .unesting-item-header:before

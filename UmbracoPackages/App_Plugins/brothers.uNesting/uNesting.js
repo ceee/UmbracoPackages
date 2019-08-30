@@ -38,14 +38,12 @@ angular.module("umbraco").controller("brothers.uNesting.PropertyEditorController
 {
   angular.extend(this, $controller('Umbraco.PropertyEditors.NestedContent.PropertyEditorController', { $scope: $scope }));
 
-  $scope.clickHide = function ($event, node)
+  $scope.clickHide = function ($event, node, $index)
   {
-    $($event.target).closest('.unesting-item').find('.umb-property[unesting-property="uNestingHide"] .umb-toggle').trigger('click');
-    if ($scope.realCurrentNode)
-    {
-      $scope.$broadcast("ncSyncVal", { key: $scope.realCurrentNode.key });
-    }
+    $event.preventDefault();
     $event.stopPropagation();
+    $($event.target).closest('.unesting-item').find('.umb-property[unesting-property="uNestingHide"] .umb-toggle').trigger('click');
+    $scope.model.value[$index]['uNestingHide'] = !$scope.model.value[$index]['uNestingHide'];
   };
 
   $scope.canHide = function (item)
