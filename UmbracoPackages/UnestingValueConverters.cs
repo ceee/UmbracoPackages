@@ -33,7 +33,7 @@ namespace UmbracoPackages
     public override object ConvertIntermediateToObject(IPublishedElement owner, IPublishedPropertyType propertyType, PropertyCacheLevel referenceCacheLevel, object inter, bool preview)
     {
       IPublishedElement element = (IPublishedElement)base.ConvertIntermediateToObject(owner, propertyType, referenceCacheLevel, inter, preview);
-      return element == null || (element.HasValue("uNestingHide") && element.Value<bool>("uNestingHide")) : null : element;
+      return element == null || (element.HasValue("uNestingHide") && element.Value<bool>("uNestingHide")) ? null : element;
     }
   }
 }
