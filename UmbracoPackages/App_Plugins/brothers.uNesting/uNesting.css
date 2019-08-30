@@ -312,7 +312,8 @@
 
 .unesting-media-item
 {
-  border-radius: 3px;
+  background: #f6f4f4;
+  border-radius: 4px;
   margin-right: 6px;
   display: flex;
   align-items: center;
@@ -326,13 +327,13 @@
 .unesting-media-item-image
 {
   background: #f6f4f4;
-  border-radius: 3px;
+  border-radius: 4px;
   border: 1px solid #f6f6f7;
 }
 
 .unesting-media-item-text
 {
-  padding: 0 10px;
+  padding: 0 15px;
   max-width: 100px;
   overflow: hidden;
   white-space: nowrap;
@@ -352,7 +353,7 @@
   justify-content: center;
   align-items: center;
   font-size: 12px;
-  border-radius: 3px;
+  border-radius: 4px;
 }
 
 
@@ -384,7 +385,7 @@
 
 .umb-property[unesting-property="uNestingHide"]
 {
-  display: none;
+
 }
 
 

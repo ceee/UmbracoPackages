@@ -40,16 +40,23 @@ angular.module("umbraco").controller("brothers.uNesting.PropertyEditorController
 
   $scope.clickHide = function ($event, node)
   {
-    //syncCurrentNode();
-    console.info(node);
+    $($event.target).closest('.unesting-item').find('.umb-property[unesting-property="uNestingHide"] .umb-toggle').trigger('click');
+    if ($scope.realCurrentNode)
+    {
+      $scope.$broadcast("ncSyncVal", { key: $scope.realCurrentNode.key });
+    }
     $event.stopPropagation();
-    //clipboardService.copy("elementType", node.contentTypeAlias, node);
-    //$event.stopPropagation();
   };
 
   $scope.canHide = function (item)
   {
     return typeof item['uNestingHide'] !== 'undefined';
+  };
+
+  $scope.isHidden = function (index)
+  {
+    var item = $scope.model.value[index];
+    return item['uNestingHide'] === '1';
   };
 });
 
@@ -112,8 +119,8 @@ angular.module('umbraco.directives').directive('unMedia', function ($http, $comp
       limit: '@'
     },
     template: '' +
-    '<div class= "unesting-media" ng- class="{\'has-title\': !!item.title}">' +
-      '<div class="unesting-media-item" ng-repeat="item in media">' +
+    '<div class="unesting-media">' +
+      '<div class="unesting-media-item" ng-repeat="item in media" ng-class="{\'has-title\': !!item.title}">' +
         '<img src="{{item.src}}" title="{{item.title}}" class="unesting-media-item-image" />' +
         '<span class="unesting-media-item-text" ng-if="item.title">{{item.title | unHtml }}</span>' +
       '</div>' +
