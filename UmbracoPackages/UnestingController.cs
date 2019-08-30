@@ -42,6 +42,11 @@ namespace UmbracoPackages
     /// <returns></returns>
     public Dictionary<Udi, string> GetMediaByUdis([FromUri]Udi[] ids)
     {
+      if (ids == null || ids.Length == 0 || (ids.Length == 1 && ids[0] == default(Udi)))
+      {
+        return new Dictionary<Udi, string>();
+      }
+
       var foundMedia = Services.MediaService.GetByIds(ids.Select(x => (x as GuidUdi).Guid));
       return foundMedia.ToDictionary(media => (Udi)media.GetUdi(), media =>
       {

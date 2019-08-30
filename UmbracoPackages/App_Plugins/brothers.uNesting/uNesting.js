@@ -637,9 +637,6 @@ angular.module("umbraco").controller("brothers.uNesting.PropertyEditorController
       unsubscribe();
     });
 
-
-
-
     $scope.clickHide = function ($event, node, alias)
     {
       $event.preventDefault();
@@ -653,15 +650,30 @@ angular.module("umbraco").controller("brothers.uNesting.PropertyEditorController
 
       var property = _.find(tab.properties, function (prop)
       {
-        return tab.id !== 0 && prop.propertyAlias.toLowerCase() === 'unestinghide';
+        return prop.propertyAlias.toLowerCase() === 'unestinghide';
       });
 
       if (property)
       {
         property.value = property.value === '1' ? '0' : '1';
+
+        $scope.setDirty();
+
+        if ($scope.inited)
+        {
+          var newValues = [];
+          for (var i = 0; i < $scope.nodes.length; i++)
+          {
+            newValues.push(convertNodeIntoNCEntry($scope.nodes[i]));
+          }
+          $scope.model.value = newValues;
+        }
       }
 
-      updateModel();
+      //if ($scope.realCurrentNode)
+      //{
+      //  $scope.$broadcast("ncSyncInVal", { key: $scope.realCurrentNode.key });
+      //}
     };
 
     $scope.canHide = function (item)
@@ -669,7 +681,7 @@ angular.module("umbraco").controller("brothers.uNesting.PropertyEditorController
       return typeof item['uNestingHide'] !== 'undefined';
     };
 
-    $scope.isHidden = function (item)
+    $scope.isHidden = function (item, node)
     {
       return item['uNestingHide'] === '1';
     };

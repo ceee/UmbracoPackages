@@ -11,6 +11,7 @@ angular.module('umbraco.directives').directive('unContent', function ($compile)
     },
     link: function (scope, element)
     {
+
       // get template
       var template = scope.config && scope.config.nameTemplate ? scope.config.nameTemplate : null;
 
@@ -33,10 +34,22 @@ angular.module('umbraco.directives').directive('unContent', function ($compile)
         $compile(element.contents())(scope);
       }
 
-      //scope.$watch('item', function (value)
+      //var unsubscribe = scope.$on("ncSyncVal", function (ev, args)
       //{
-      //  render();
+      //  if (args.key === scope.node.key)
+      //  {
+      //    render();
+      //  }
       //});
+      var unsubscribe = scope.$watch('item', function (value)
+      {
+        render();
+      });
+
+      scope.$on('$destroy', function ()
+      {
+        unsubscribe();
+      });
 
       // first-time rendering
       render();
@@ -367,53 +380,67 @@ angular.module("umbraco.directives").directive('uNestingContentEditor', [
   {
     var link = function ($scope)
     {
-      // Clone the model because some property editors
-      // do weird things like updating and config values
-      // so we want to ensure we start from a fresh every
-      // time, we'll just sync the value back when we need to
-      $scope.model = angular.copy($scope.ngModel);
-      $scope.nodeContext = $scope.model;
-
-      // Find the selected tab
-      var selectedTab = $scope.model.variants[0].tabs[0];
-
-      if ($scope.tabAlias)
+      var createModel = function ()
       {
-        angular.forEach($scope.model.variants[0].tabs, function (tab)
+        // Clone the model because some property editors
+        // do weird things like updating and config values
+        // so we want to ensure we start from a fresh every
+        // time, we'll just sync the value back when we need to
+        $scope.model = angular.copy($scope.ngModel);
+        $scope.nodeContext = $scope.model;
+
+        // Find the selected tab
+        $scope.selectedTab = $scope.model.variants[0].tabs[0];
+
+        if ($scope.tabAlias)
         {
-          if (tab.alias.toLowerCase() === $scope.tabAlias.toLowerCase())
+          angular.forEach($scope.model.variants[0].tabs, function (tab)
           {
-            selectedTab = tab;
-            return;
-          }
+            if (tab.alias.toLowerCase() === $scope.tabAlias.toLowerCase())
+            {
+              $scope.selectedTab = tab;
+              return;
+            }
+          });
+        }
+
+        $scope.tabs = $scope.model.variants[0].tabs;
+
+        var contentTab = _.find($scope.tabs, function (tab)
+        {
+          var alias = tab.alias.toLowerCase();
+          return tab.id !== 0 && alias !== 'unestingsettings' && (!$scope.tabAlias || alias === $scope.tabAlias.toLowerCase());
         });
-      }
 
-      $scope.tabs = $scope.model.variants[0].tabs;
+        $scope.contentProperties = _.filter(contentTab.properties, function (prop)
+        {
+          return prop.propertyAlias.toLowerCase() !== 'unestinghide';
+        });
 
-      var contentTab = _.find($scope.tabs, function (tab)
+        //var settingsTab = _.find($scope.tabs, function (tab)
+        //{
+        //  var alias = tab.alias.toLowerCase();
+        //  return tab.id !== 0 && alias === 'unestingsettings';
+        //});
+
+        //$scope.settingsProperties = settingsTab ? settingsTab.properties : [];
+        $scope.settingsProperties = [];
+      };
+
+      // Listen for incoming changes
+      var unsubscribeIn = $scope.$on("ncSyncInVal", function (ev, args)
       {
-        var alias = tab.alias.toLowerCase();
-        return tab.id !== 0 && alias !== 'unestingsettings' && (!$scope.tabAlias || alias === $scope.tabAlias.toLowerCase());
+        if (args.key === $scope.model.key)
+        {
+          createModel();
+        }
       });
-
-      $scope.contentProperties = _.filter(contentTab.properties, function (prop)
-      {
-        return prop.propertyAlias.toLowerCase() !== 'unestinghide';
-      });
-
-      //var settingsTab = _.find($scope.tabs, function (tab)
-      //{
-      //  var alias = tab.alias.toLowerCase();
-      //  return tab.id !== 0 && alias === 'unestingsettings';
-      //});
-
-      //$scope.settingsProperties = settingsTab ? settingsTab.properties : [];
-      $scope.settingsProperties = [];
 
       // Listen for sync request
       var unsubscribe = $scope.$on("ncSyncVal", function (ev, args)
       {
+        unsubscribeIn();
+
         if (args.key === $scope.model.key)
         {
           // Tell inner controls we are submitting
@@ -422,10 +449,10 @@ angular.module("umbraco.directives").directive('uNestingContentEditor', [
           // Sync the values back
           angular.forEach($scope.ngModel.variants[0].tabs, function (tab)
           {
-            if (tab.alias.toLowerCase() === selectedTab.alias.toLowerCase())
+            if (tab.alias.toLowerCase() === $scope.selectedTab.alias.toLowerCase())
             {
 
-              var localPropsMap = selectedTab.properties.reduce(function (map, obj)
+              var localPropsMap = $scope.selectedTab.properties.reduce(function (map, obj)
               {
                 map[obj.alias] = obj;
                 return map;
@@ -448,6 +475,8 @@ angular.module("umbraco.directives").directive('uNestingContentEditor', [
       {
         unsubscribe();
       });
+
+      createModel();
     };
 
     return {
