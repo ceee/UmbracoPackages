@@ -117,6 +117,11 @@ angular.module('umbraco.directives').directive('unMedia', function ($http, $comp
               titleCache[value] = item[scope.titleKey];
             }
 
+            if (item['uNestingHide'] === '1')
+            {
+              return '';
+            }
+
             return value;
           }).join(',');
         }
@@ -267,11 +272,14 @@ angular.module('umbraco.directives').directive('unBoxes', function ($compile)
 
           var headline = item[scope.titleKey];
 
-          items.push({
-            maxLines: headline ? max - 1 : max,
-            headline: headline,
-            text: item[scope.key]
-          });
+          if (item['uNestingHide'] !== '1')
+          {
+            items.push({
+              maxLines: headline ? max - 1 : max,
+              headline: headline,
+              text: item[scope.key]
+            });
+          }
         }
       });
 
