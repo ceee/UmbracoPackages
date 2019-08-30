@@ -16,7 +16,7 @@
 
       <div class="unesting-item" ng-repeat="node in nodes" 
         unesting-alias="{{node.documentType.alias}}"
-        ng-class="{ 'is-active' : $parent.realCurrentNode.key === node.key, 'umb-nested-content__item--single' : $parent.singleMode, 'is-hidden': !!model.value[$index]['uNestingHide'] === '1' }">
+        ng-class="{ 'is-active' : $parent.realCurrentNode.key === node.key, 'umb-nested-content__item--single' : $parent.singleMode, 'is-hidden': isHidden(model.value[$index]) }">
 
         <div class="unesting-item-header" ng-click="$parent.editNode($index)" ng-hide="$parent.singleMode">
 
@@ -67,7 +67,7 @@
                 <i class="icon icon-trash-alt"></i>
               </a>
 
-              <a class="unesting-icon is-negative hidden-toggle" localize="title" title="general_visibility" ng-if="canHide(model.value[$index])"  ng-click="clickHide($event, node, $index);" prevent-default>
+              <a class="unesting-icon is-negative hidden-toggle" localize="title" title="general_visibility" ng-if="canHide(model.value[$index])"  ng-click="clickHide($event, node, ncTabAlias);" prevent-default>
                 <i class="icon icon-lock"></i>
               </a>
             </div>

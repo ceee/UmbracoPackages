@@ -395,6 +395,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Plugins\brothers.uNesting\uNesting.directives.js" />
     <Content Include="App_Plugins\brothers.uNesting\uNesting.editor.html" />
     <Content Include="App_Plugins\brothers.uNesting\uNesting.css" />
     <Content Include="App_Plugins\brothers.uNesting\uNesting.docTypePicker.html" />
@@ -471,7 +472,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MediaExtendedController.cs" />
+    <Compile Include="UnestingController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

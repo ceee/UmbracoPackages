@@ -1,6 +1,7 @@
 ﻿{
   "javascript": [
-    "~/App_Plugins/brothers.uNesting/uNesting.js"
+    "~/App_Plugins/brothers.uNesting/uNesting.js",
+    "~/App_Plugins/brothers.uNesting/uNesting.directives.js"
   ],
   "css": [
     "~/App_Plugins/brothers.uNesting/uNesting.css"

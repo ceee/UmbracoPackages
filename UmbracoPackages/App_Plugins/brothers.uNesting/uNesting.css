@@ -90,7 +90,7 @@
   position: relative;
   margin-top: 1px;
   padding: 20px 0;
-  color: #1b264f;
+  color: #000;
   border-radius: 3px 3px 0 0;
   border-bottom: none;
   background: none;
@@ -107,8 +107,7 @@
   top: 50%;
   margin-top: -12px;
   left: 3px;
-  font-size: 1.4rem;
-  z-index: 1;
+  font-size: 20px;
 }
 
 .unesting-item-header-content.--has-icon
@@ -130,15 +129,15 @@
   bottom: -15px;
 }
 
-.unesting-item-header:hover .unesting-item-header-inner .unesting-item-header-content
+/*.unesting-item-header:hover .unesting-item-header-inner .unesting-item-header-content
 {
   padding-right: 130px;
-}
+}*/
 
 .unesting-item-header-content
 {
   line-height: 20px;
-  color: #1b264f;
+  color: #000;
   white-space: nowrap;
   position: relative;
 }
@@ -189,9 +188,10 @@ un-config
 {
   position: absolute;
   right: 0;
-  top: 50%;
+  top: 0;
+  bottom: 0;
+  align-items: center;
   padding: 5px;
-  margin-top: -22px;
   display: flex;
   grid-gap: 8px;
 }
@@ -200,6 +200,7 @@ un-config
 {
   transition: opacity .12s ease-in-out;
   opacity: 0;
+  background: white;
 }
 
 .unesting-item-header:hover .unesting-icons > *
@@ -215,11 +216,11 @@ un-config
   height: 32px;
   justify-content: center;
   align-items: center;
-  border-radius: 20px;
-  border: 1px solid #e9e9eb;
+  border-radius: 16px;
   cursor: pointer;
-  color: #1b264f;
+  color: #000;
   transition: background 0.12s ease;
+  border: 1px solid #f6f6f7;
 }
 
 .unesting-icon.is-negative:hover
@@ -241,7 +242,7 @@ un-config
   height: 3px;
   width: 3px;
   border-radius: 50%;
-  background: #1b264f;
+  background: #000;
   display: inline-block;
   margin: 0 1px;
   opacity: .6;
@@ -280,7 +281,7 @@ un-config
 
 .unesting-content > .umb-pane
 {
-  margin: 30px 20px;
+  margin: 30px 20px 30px 20px;
 }
 
 .unesting-item.is-active > .unesting-content
@@ -324,9 +325,14 @@ un-config
   border-bottom-color: #e9e9eb;
 }
 
+.unesting-item .unesting-item .unesting-icons > *
+{
+  background: #faf8f8;
+  border-color: #e9e9eb;
+}
+
 
 /* media */
-
 .unesting-media
 {
   display: flex;
@@ -431,7 +437,7 @@ un-config
   background: #f6f4f4;
   border-radius: 4px;
   width: 180px;
-  min-height: 60px;
+  /*min-height: 60px;*/
   max-height: 65px;
   padding: 10px 15px;
   display: block;
@@ -444,7 +450,7 @@ un-config
   font-size: 14px;
   white-space: nowrap;
   text-overflow: ellipsis;
-  color: #1b264f;
+  color: #333;
   height: 20px;
   overflow: hidden;
   margin-bottom: 5px;
@@ -514,7 +520,7 @@ un-config
 {
   display: block;
   font-size: 14px;
-  color: #1b264f;
+  color: #000;
   font-weight: 600;
   margin-bottom: 4px;
 }
@@ -531,9 +537,9 @@ un-config
 
 
 /* doctypepicker */
-.unesting-doctype-textarea
+.unesting-doctype-template
 {
-  width: 100%;
+  width: 400px;
   height: 64px;
   max-height: 200px;
   min-height: 32px;
@@ -572,7 +578,7 @@ un-config
 .unesting-item[unesting-alias="newsletterHeadline"] .unesting-text-partial[unesting-index="0"]
 {
   font-size: 16px;
-  color: #1b264f;
+  color: #000;
   font-weight: 600;
 }
 
@@ -594,9 +600,12 @@ un-config
   content: '“';
 }
 
+.umb-nested-content-property-container
+{
+  margin-bottom: 12px;
+}
 
 /* generic overrides */
-
 .btn-info
 {
   color: #454957;
