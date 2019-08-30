@@ -89,7 +89,7 @@
   line-height: 20px;
   position: relative;
   margin-top: 1px;
-  padding: 20px 5px;
+  padding: 20px 0;
   color: #1b264f;
   border-radius: 3px 3px 0 0;
   border-bottom: none;
@@ -157,7 +157,30 @@
   overflow: hidden;
   margin-top: 4px;
   display: block;
-  line-height: 18px;
+  line-height: 20px;
+}
+
+.unesting-item-header.no-label .unesting-item-header-content-name
+{
+  display: none;
+}
+
+.unesting-item-header.no-label .unesting-item-header-content-text
+{
+  margin-top: 0;
+}
+
+.unesting-item-header.as-columns .unesting-item-header-content-text
+{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  grid-gap: 12px;
+}
+
+un-config
+{
+  display: none !important;
 }
 
 /* icons */
@@ -303,6 +326,7 @@
 
 
 /* media */
+
 .unesting-media
 {
   display: flex;
@@ -334,7 +358,7 @@
 .unesting-media-item-text
 {
   padding: 0 15px;
-  max-width: 100px;
+  max-width: 140px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -346,14 +370,109 @@
   max-width: 100%;
   height: auto;
   vertical-align: middle;
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   background: #f6f4f4;
   display: inline-flex;
   justify-content: center;
   align-items: center;
   font-size: 12px;
   border-radius: 4px;
+}
+
+[unesting-size="large"] .unesting-media-more,
+[unesting-size="high"] .unesting-media-more
+{
+  width: 100px;
+  height: 100px;
+}
+
+
+/* text partial */
+
+.unesting-text
+{
+  white-space: normal;
+  max-width: 800px;
+  display: box;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.unesting-text-partial:before
+{
+  content: ' – ';
+}
+
+.unesting-text-partial:first-child:before
+{
+  display: none;
+}
+
+
+/* boxes */
+
+.unesting-boxes
+{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  grid-gap: 12px;
+  margin-top: 4px;
+  white-space: normal;
+}
+
+.unesting-boxes-item,
+.unesting-boxes-more
+{
+  background: #f6f4f4;
+  border-radius: 4px;
+  width: 180px;
+  min-height: 60px;
+  max-height: 65px;
+  padding: 10px 15px;
+  display: block;
+}
+
+.unesting-boxes-item-headline
+{
+  display: block;
+  font-weight: 600;
+  font-size: 14px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #1b264f;
+  height: 20px;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+
+.unesting-boxes-item-text
+{
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  max-height: 40px;
+}
+
+.unesting-boxes-more
+{
+  width: 50px;
+  vertical-align: middle;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+[unesting-size="large"] .unesting-boxes-item,
+[unesting-size="large"] .unesting-boxes-more
+{
+  min-height: 120px;
+  max-height: 125px;
 }
 
 
@@ -369,11 +488,53 @@
 }
 
 
+/* figure */
+
+.unesting-figure
+{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  grid-gap: 12px;
+  max-width: 800px;
+}
+
+.unesting-figure un-media
+{
+  flex-shrink: 0;
+}
+
+.unesting-figure-content
+{
+  margin-top: 2px;
+  max-width: 800px;
+}
+
+.unesting-figure-headline
+{
+  display: block;
+  font-size: 14px;
+  color: #1b264f;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.unesting-figure-text
+{
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  max-height: 40px;
+  white-space: normal;
+}
+
+
 /* doctypepicker */
 .unesting-doctype-textarea
 {
   width: 100%;
-  height: 32px;
+  height: 64px;
   max-height: 200px;
   min-height: 32px;
   padding-top: 6px;
@@ -390,9 +551,31 @@
 
 
 /* data type overrides */
-.unesting-item .umb-sortable-thumbnails li
+
+.unesting-item[unesting-alias="headline"] .unesting-text-partial[unesting-index="0"],
+.unesting-item[unesting-alias="newsletterHeadline"] .unesting-text-partial[unesting-index="0"]
 {
-  /*background: none;*/
+  font-size: 16px;
+  color: #1b264f;
+  font-weight: 600;
+}
+
+.unesting-item[unesting-alias="offset"] .unesting-item-header-content-name,
+.unesting-item[unesting-alias="newsletterOffset"] .unesting-item-header-content-name
+{
+  color: #817f85;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.unesting-item[unesting-alias="citation"] .unesting-figure-headline:before
+{
+  content: '„';
+}
+
+.unesting-item[unesting-alias="citation"] .unesting-figure-headline:after
+{
+  content: '“';
 }
 
 

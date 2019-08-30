@@ -14,12 +14,14 @@
 
     <div class="unesting-items" ng-hide="nodes.length === 0" ng-class="{ 'is-hidden': nodes.length === 0 }" ui-sortable="sortableOptions" ng-model="nodes">
 
-      <div class="unesting-item" ng-repeat="node in nodes" ng-class="{ 'is-active' : $parent.realCurrentNode.key === node.key, 'umb-nested-content__item--single' : $parent.singleMode, 'is-hidden': !!model.value[$index]['uNestingHide'] === '1' }">
+      <div class="unesting-item" ng-repeat="node in nodes" 
+        unesting-alias="{{node.documentType.alias}}"
+        ng-class="{ 'is-active' : $parent.realCurrentNode.key === node.key, 'umb-nested-content__item--single' : $parent.singleMode, 'is-hidden': !!model.value[$index]['uNestingHide'] === '1' }">
 
         <div class="unesting-item-header" ng-click="$parent.editNode($index)" ng-hide="$parent.singleMode">
 
           <div class="umb-nested-content__header-bar unesting-item-header-inner">
-            <i ng-if="showIcons" class="icon" ng-class="$parent.getIcon($index)"></i>
+            <i ng-if="showIcons" class="icon" ng-class="$parent.getIcon($index)" title="{{node.contentTypeName}}"></i>
             <div class="unesting-item-header-content" ng-class="{'--has-icon': showIcons}">
               <span class="unesting-item-header-content-iconbg" ng-if="showIcons"></span>
               <div class="unesting-item-header-content-name" ng-bind="node.contentTypeName"></div>
@@ -81,7 +83,7 @@
     </div>
 
     <div class="unesting-footer" ng-hide="hasContentTypes === false || nodes.length >= maxItems">
-      <button type="button" class="btn btn-info" ng-class="{ '--disabled': !scaffolds.length }" ng-click="openNodeTypePicker($event)">
+      <button type="button" class="btn btn-action" ng-class="{ '--disabled': !scaffolds.length }" ng-click="openNodeTypePicker($event)">
         <localize key="grid_addElement"></localize>
       </button>
     </div>
