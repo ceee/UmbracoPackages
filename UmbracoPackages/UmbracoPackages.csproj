@@ -472,8 +472,10 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UnestingComposer.cs" />
     <Compile Include="UnestingController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnestingValueConverters.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="config\imageprocessor\security.config" />
