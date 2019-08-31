@@ -1,0 +1,208 @@
+﻿
+
+/* generic overrides */
+
+.btn, .btn-group > .btn, .btn-group > .dropdown-menu, .btn-group > .popover
+{
+  font-size: 14px;
+}
+
+.btn
+{
+  padding: 10px 18px;
+}
+
+.tabLink
+{
+  font-size: 14px !important;
+  padding: 14px 30px !important;
+}
+
+.tabLink.active::before
+{
+  display: none;
+}
+
+.tabLink:not(.active)
+{
+  background: rgba(255,255,255,0.5);
+  font-weight: 400;
+  /*color: #817f85;*/
+}
+
+.fake-top-background
+{
+  position: sticky !important;
+  top: 0;
+}
+
+#tabsList
+{
+  position: sticky !important;
+  top: 20px;
+  padding-top: 0;
+  padding-left: 1px;
+  margin-left: -1px !important;
+}
+
+.fake-top-background:before
+{
+  content: ' ';
+  position: absolute;
+  left: -3px;
+  right: -3px;
+  top: 0;
+  height: 64px;
+  background: #f6f4f4;
+  display: block;
+}
+
+#tabsList .tabLink
+{
+  z-index: 1;
+}
+
+.tabbed-panel
+{
+  padding-top: 20px !important;
+}
+
+/* for static tab bar */
+
+.fake-top-background
+{
+  display: none !important;
+}
+
+#tabsList
+{
+  position: relative !important;
+  top: 0 !important;
+}
+
+
+.umb-tree-item__label
+{
+  padding: 12px 0 10px 0 !important;
+}
+
+.umb-editor-header__name-wrapper,
+.uneditable-input, input[type="color"], input[type="date"], input[type="datetime-local"], input[type="datetime"], input[type="email"], input[type="month"],
+input[type="number"], input[type="password"], input[type="search"], input[type="tel"], input[type="text"], input[type="time"], input[type="url"], input[type="week"], textarea,
+.umb-mediapicker > div
+{
+  border-color: #eceaea;
+}
+
+.mce-panel
+{
+  border-color: #eceaea !important;
+}
+
+input.umb-editor-header__name-input
+{
+  border-color: transparent !important;
+}
+
+.mce-top-part::before
+{
+  display: none !important;
+}
+
+.umb-tree-icon
+{
+  margin: 0 15px 0 5px;
+}
+
+.has-unpublished-version > .umb-tree-item__inner > .umb-tree-item__annotation, 
+.is-container > .umb-tree-item__inner > .umb-tree-item__annotation, 
+.protected > .umb-tree-item__inner > .umb-tree-item__annotation
+{
+  margin-left: 18px !important;
+  top: 22px !important;
+}
+
+.umb-tree-item.current > .umb-tree-item__inner
+{
+  background: #f7e4e1;
+  border-right: 3px solid #f5c1bc;
+}
+
+.umb-sub-views-nav-item .icon
+{
+  font-size: 20px !important;
+  margin-bottom: 3px;
+  margin-right: 10px;
+}
+
+.umb-sub-views-nav-item > a
+{
+  padding: 6px 30px 4px 26px;
+  min-width: 80px;
+  flex-direction: row;
+}
+
+.umb-sub-views-nav-item > a.is-active
+{
+  padding: 6px 30px 5px 26px;
+  background: #f6f4f4;
+  height: 70px;
+}
+
+.umb-sub-views-nav-item-text
+{
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.umb-sub-views-nav-item > a.is-active .umb-sub-views-nav-item-text
+{
+  font-weight: 600;
+}
+
+.umb-sub-views-nav-item > a:active
+{
+  box-shadow: none;
+}
+
+.umb-sub-views-nav-item > a.is-active::after
+{
+  display: none;
+}
+
+.umb-sub-views-nav-item__anchor_dropdown
+{
+  display: none;
+}
+
+.dropdown-menu > li > a
+{
+  padding: 12px 20px;
+}
+
+.umb-action-link
+{
+  padding: 12px 25px 12px 20px;
+  font-size: 14px;
+}
+
+.umb-action-link:focus, .umb-action-link:hover, .umb-action.selected
+{
+  color: #2152a3 !important;
+  background: #f9f6f5 !important;
+}
+
+.umb-modalcolumn-header h1
+{
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.umb-editor-footer
+{
+  height: 60px;
+}
+
+.umb-editor-container
+{
+  bottom: 60px;

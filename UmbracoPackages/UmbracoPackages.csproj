@@ -395,6 +395,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Plugins\brothers.uCare\uCare.css" />
     <Content Include="App_Plugins\brothers.uNesting\uNesting.directives.js" />
     <Content Include="App_Plugins\brothers.uNesting\uNesting.editor.html" />
     <Content Include="App_Plugins\brothers.uNesting\uNesting.css" />
@@ -495,6 +496,7 @@
     <Content Include="App_Plugins\StarterKit\backoffice\tours\create-content.json" />
     <Content Include="App_Plugins\StarterKit\backoffice\tours\data-structure.json" />
     <Content Include="App_Plugins\StarterKit\package.manifest" />
+    <Content Include="App_Plugins\brothers.uCare\package.manifest" />
     <None Include="App_Plugins\brothers.uNesting\package.manifest" />
     <None Include="packages.config" />
     <Content Include="Views\Web.config" />

@@ -1,0 +1,8 @@
+﻿{
+  "javascript": [
+    
+  ],
+  "css": [
+    "~/App_Plugins/brothers.uCare/uCare.css"
+  ]
+}
