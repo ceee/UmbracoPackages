@@ -38,6 +38,13 @@
   border-color: #e9e9eb;
 }
 
+.btn-link:focus, .btn-link:hover
+{
+  text-decoration: none;
+  background-color: rgba(2,0,0,0.05);
+  border-radius: 3px;
+}
+
 
 
 /* CONTENT TABS
@@ -94,7 +101,6 @@
 }
 
 
-
 /* DROPWDOWNS AND MODALS
 /* **********************************************************
 /* More padding for dropdown items and matching headlines
@@ -104,6 +110,12 @@
 .dropdown-menu > li > a
 {
   padding: 12px 20px;
+}
+
+.dropdown-menu > li > umb-checkbox
+{
+  display: inline-block;
+  padding: 4px 0;
 }
 
 .umb-modalcolumn-header h1
@@ -125,6 +137,14 @@ input[type="number"], input[type="password"], input[type="search"], input[type="
 .umb-mediapicker > div
 {
   border-color: #eceaea;
+}
+
+.tabbing-active .uneditable-input:focus, .tabbing-active input[type="color"]:focus, .tabbing-active input[type="date"]:focus, .tabbing-active input[type="datetime-local"]:focus,
+.tabbing-active input[type="datetime"]:focus, .tabbing-active input[type="email"]:focus, .tabbing-active input[type="month"]:focus, .tabbing-active input[type="number"]:focus,
+.tabbing-active input[type="password"]:focus, .tabbing-active input[type="search"]:focus, .tabbing-active input[type="tel"]:focus, .tabbing-active input[type="text"]:focus,
+.tabbing-active input[type="time"]:focus, .tabbing-active input[type="url"]:focus, .tabbing-active input[type="week"]:focus, .tabbing-active textarea:focus
+{
+  outline: thin dotted #515054;
 }
 
 .mce-panel
@@ -233,12 +253,55 @@ input.umb-editor-header__name-input
 
 
 
+/* HEADER
+/* **********************************************************
+/* TODO desc
+/* ********************************************************** */
+
+.umb-editor-sub-header__section
+{
+  padding-left: 20px;
+}
+
+.umb-layout-selector__active-layout
+{
+  border: none;
+}
+
+.umb-layout-selector__dropdown-item.-active
+{
+  border: 1px solid #f5c1bc;
+  background: #f7e4e1;
+}
+
+.umb-editor-sub-header__content-left umb-button:first-child .umb-button
+{
+  margin-left: 0;
+}
+
+.umb-editor-sub-header
+{
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e9e9eb;
+  /*border-left: none;
+  border-right: none;*/
+  margin: -10px -5px 15px;
+}
+
+.umb-editor-sub-header.-umb-sticky-bar
+{
+  padding-top: 15px;
+  box-shadow: none;
+}
+
+
+
 /* BOXES
 /* **********************************************************
 /* TODO desc
 /* ********************************************************** */
 
-.umb-box-header
+.umb-box-header, .umb-group-panel__header
 {
   padding: 20px 20px;
   background: #faf8f8;
@@ -294,10 +357,31 @@ input.umb-editor-header__name-input
 
 
 
+/* NOTIFICATIONS
+/* **********************************************************
+/* TODO desc
+/* ********************************************************** */
+
+.pagination ul > li > a, .pagination ul > li > span
+{
+  padding: 6px 16px;
+  border-color: #e9e9eb;
+}
+
+.pagination ul > .active > a, .pagination ul > .active > span
+{
+  pointer-events: none;
+  color: #000;
+  font-weight: 600;
+}
+
+
+
 /* TABIFY PACKAGE
 /* **********************************************************
 /* static tabs instead of fixed and some visual updates
 /* ********************************************************** */
+
 .tabLink
 {
   font-size: 14px !important;
