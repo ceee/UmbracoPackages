@@ -488,6 +488,12 @@ un-config
   text-align: left;
 }
 
+.unesting-footer .btn
+{
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
 .unesting-items:not(.is-hidden) + .unesting-footer
 {
   margin-top: 20px;
