@@ -146,9 +146,10 @@ angular.module("umbraco").controller("brothers.uNesting.PropertyEditorController
       $scope.overlayMenu = {
         show: false,
         style: {},
-        filter: $scope.scaffolds.length > 12 ? true : false,
+        filter: true, // $scope.scaffolds.length > 12 ? true : false,
         orderBy: "$index",
-        view: "itempicker",
+        view: "/App_Plugins/brothers.uNesting/uNesting.picker.html",
+        position: 'left',
         event: $event,
         clickPasteItem: function (item)
         {
@@ -177,8 +178,10 @@ angular.module("umbraco").controller("brothers.uNesting.PropertyEditorController
       _.each($scope.scaffolds, function (scaffold)
       {
         $scope.overlayMenu.availableItems.push({
+          scaffold: scaffold,
           alias: scaffold.contentTypeAlias,
           name: scaffold.contentTypeName,
+          description: scaffold.documentType.description,
           icon: iconHelper.convertFromLegacyIcon(scaffold.icon)
         });
       });
@@ -188,7 +191,7 @@ angular.module("umbraco").controller("brothers.uNesting.PropertyEditorController
         return;
       }
 
-      $scope.overlayMenu.size = $scope.overlayMenu.availableItems.length > 6 ? "medium" : "small";
+      $scope.overlayMenu.size = "medium"; // $scope.overlayMenu.availableItems.length > 6 ? "medium" : "small";
 
       $scope.overlayMenu.pasteItems = [];
       var availableNodesForPaste = clipboardService.retriveDataOfType("elementType", contentTypeAliases);
@@ -676,3 +679,40 @@ angular.module("umbraco").controller("brothers.uNesting.PropertyEditorController
     };
   }
 ]);
+
+
+
+
+
+angular.module("umbraco").controller("brothers.uNesting.ItemPickerOverlay", function ($scope, localizationService)
+{
+
+  function onInit()
+  {
+    $scope.model.hideSubmitButton = true;
+
+    console.info($scope.model);
+
+    if (!$scope.model.title)
+    {
+      localizationService.localize("defaultdialogs_selectItem").then(function (value)
+      {
+        $scope.model.title = value;
+      });
+    }
+
+    if (!$scope.model.orderBy)
+    {
+      $scope.model.orderBy = "name";
+    }
+  }
+
+  $scope.selectItem = function (item)
+  {
+    $scope.model.selectedItem = item;
+    $scope.submitForm($scope.model);
+  };
+
+  onInit();
+
+});

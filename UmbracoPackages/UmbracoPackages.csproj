@@ -402,6 +402,7 @@
     <Content Include="App_Plugins\brothers.uNesting\uNesting.docTypePicker.html" />
     <Content Include="App_Plugins\brothers.uNesting\uNesting.html" />
     <Content Include="App_Plugins\brothers.uNesting\uNesting.js" />
+    <Content Include="App_Plugins\brothers.uNesting\uNesting.picker.html" />
     <Content Include="App_Plugins\brothers.uNesting\_nc.js" />
     <Content Include="App_Plugins\Cultiv.Tabify\directives\ct-tabbed-content.html" />
     <Content Include="App_Plugins\Cultiv.Tabify\directives\cttabbedcontent.directive.js" />

@@ -578,8 +578,45 @@ un-config
 }
 
 
-/* data type overrides */
+/* picker overlay */
 
+.unesting-actions.umb-actions-child .icon
+{
+  font-size: 25px;
+  min-width: 25px;
+}
+
+.unesting-actions.umb-actions-child .menu-label
+{
+  margin-left: 8px;
+}
+
+.unesting-picker .form-search
+{
+  position: relative;
+}
+
+.unesting-picker input.search-query
+{
+  font-weight: 400;
+  font-size: 14px;
+  border-color: transparent;
+  border-radius: 18px;
+  height: 40px;
+  padding-top: 6px;
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,.10);
+  background: #faf8f8;
+}
+
+.unesting-picker .form-search .icon-search
+{
+  top: 10px;
+  left: auto;
+  right: 22px;
+}
+
+
+/* data type overrides */
 .unesting-item[unesting-alias="headline"] .unesting-text-partial[unesting-index="0"],
 .unesting-item[unesting-alias="newsletterHeadline"] .unesting-text-partial[unesting-index="0"]
 {

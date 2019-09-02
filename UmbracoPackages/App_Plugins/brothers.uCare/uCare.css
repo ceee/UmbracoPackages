@@ -118,7 +118,7 @@
   padding: 4px 0;
 }
 
-.umb-modalcolumn-header h1
+.umb-modalcolumn-header h1, .umb-overlay__title
 {
   font-weight: 700;
   font-size: 15px;
@@ -172,7 +172,8 @@ input.umb-editor-header__name-input
   margin-left: 220px;
 }
 
-.form-search .search-input
+.form-search .search-input,
+input.search-query
 {
   font-weight: 400;
   font-size: 14px;
@@ -183,7 +184,7 @@ input.umb-editor-header__name-input
   box-shadow: 0 1px 1px 0 rgba(0,0,0,.10);
 }
 
-.form-search .inner-addon [class*=" icon-"], .form-search .inner-addon [class^="icon-"]
+.form-search .inner-addon [class*=" icon-"], .form-search .inner-addon [class^="icon-"], .form-search .icon
 {
   top: 5px;
   left: auto;
@@ -357,7 +358,7 @@ input.umb-editor-header__name-input
 
 
 
-/* NOTIFICATIONS
+/* PAGINATION
 /* **********************************************************
 /* TODO desc
 /* ********************************************************** */
