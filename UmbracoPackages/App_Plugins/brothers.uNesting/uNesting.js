@@ -149,7 +149,6 @@ angular.module("umbraco").controller("brothers.uNesting.PropertyEditorController
         filter: true, // $scope.scaffolds.length > 12 ? true : false,
         orderBy: "$index",
         view: "/App_Plugins/brothers.uNesting/uNesting.picker.html",
-        position: 'left',
         event: $event,
         clickPasteItem: function (item)
         {

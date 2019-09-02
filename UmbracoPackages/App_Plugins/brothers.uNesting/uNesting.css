@@ -615,6 +615,23 @@ un-config
   right: 22px;
 }
 
+.unesting-picker-container
+{
+  max-height: calc(100vh - 220px);
+  max-width: 540px !important;
+}
+
+.unesting-picker-container .umb-overlay-container
+{
+  scrollbar-color: #ddd8d8 transparent;
+  scrollbar-width: thin;
+  max-height: calc(100vh - 360px);
+}
+.unesting-picker-container.umb-overlay.umb-overlay-center .umb-overlay-header
+{
+  padding: 20px 30px 10px;
+}
+
 
 /* data type overrides */
 .unesting-item[unesting-alias="headline"] .unesting-text-partial[unesting-index="0"],
