@@ -564,17 +564,13 @@ un-config
 
 /* editor */
 
-.unesting-editor-pane.has-settings
+.unesting-editor-pane-group
 {
-  display: grid;
-  grid-template-columns: 1fr 300px;
-}
-
-.unesting-editor-pane-settings
-{
-  border-left: 1px solid #e9e9eb;
-  padding-left: 20px;
-  margin-left: 20px;
+  background: #f6f4f4;
+  padding: 10px 20px;
+  margin: 20px -20px 20px;
+  font-size: 14px;
+  color: #88878c;
 }
 
 
@@ -632,33 +628,6 @@ un-config
   padding: 20px 30px 10px;
 }
 
-
-/* data type overrides */
-.unesting-item[unesting-alias="headline"] .unesting-text-partial[unesting-index="0"],
-.unesting-item[unesting-alias="newsletterHeadline"] .unesting-text-partial[unesting-index="0"]
-{
-  font-size: 16px;
-  color: #000;
-  font-weight: 600;
-}
-
-.unesting-item[unesting-alias="offset"] .unesting-item-header-content-name,
-.unesting-item[unesting-alias="newsletterOffset"] .unesting-item-header-content-name
-{
-  color: #817f85;
-  font-size: 13px;
-  font-weight: 400;
-}
-
-.unesting-item[unesting-alias="citation"] .unesting-figure-headline:before
-{
-  content: '„';
-}
-
-.unesting-item[unesting-alias="citation"] .unesting-figure-headline:after
-{
-  content: '“';
-}
 
 .umb-nested-content-property-container
 {

@@ -25,6 +25,7 @@
 {
   padding: 12px 25px 12px 20px;
   font-size: 14px;
+  text-align: left;
 }
 
 .umb-action-link:focus, .umb-action-link:hover, .umb-action.selected
@@ -172,8 +173,7 @@ input.umb-editor-header__name-input
   margin-left: 220px;
 }
 
-.form-search .search-input,
-input.search-query
+.form-search .search-input, input.search-query
 {
   font-weight: 400;
   font-size: 14px;
@@ -295,13 +295,51 @@ input.search-query
   box-shadow: none;
 }
 
+.umb-group-panel .umb-listview .umb-editor-sub-header
+{
+  margin: 0 -5px 15px;
+  padding: 0 0 8px;
+  background: white;
+  border-bottom: none;
+  border-left-color: white;
+  border-right-color: white;
+}
+
+.umb-group-panel .umb-listview .umb-editor-sub-header.-umb-sticky-bar
+{
+  padding: 15px 0;
+}
+
+.umb-group-panel .umb-listview .umb-editor-sub-header .form-search .inner-addon input[type="text"]
+{
+  background: #faf8f8;
+}
+
+.umb-group-panel .umb-listview .umb-editor-sub-header .btn-white
+{
+  color: #fff;
+  border-color: #1b264f #1b264f #080b16;
+  border-color: rgba(0,0,0,.1) rgba(0,0,0,.1) rgba(0,0,0,.25);
+  background-color: #1b264f;
+}
+
+.umb-group-panel .umb-listview .umb-editor-sub-header .btn-white .caret
+{
+  border-top-color: white;
+  border-bottom-color: white;
+}
+
+.umb-group-panel .umb-listview .umb-editor-sub-header .btn-group + .btn-group
+{
+  margin-left: 0;
+}
+
 
 
 /* BOXES
 /* **********************************************************
 /* TODO desc
 /* ********************************************************** */
-
 .umb-box-header, .umb-group-panel__header
 {
   padding: 20px 20px;

@@ -1,5 +1,5 @@
 ﻿<div class="umb-pane unesting-editor-pane" ng-class="{ 'has-settings': settingsProperties.length > 0 }">
-  <div class="unesting-editor-pane-content">
+  <div>
     <div ng-repeat="property in contentProperties" class="umb-nested-content-property-container">
 
       <umb-property property="property" unesting-property="{{property.propertyAlias}}" ng-class="{'umb-nested-content--not-supported': property.notSupported}">
@@ -12,7 +12,8 @@
     </div>
   </div>
 
-  <div class="unesting-editor-pane-settings" ng-if="settingsProperties.length > 0">
+  <div ng-if="settingsProperties.length > 0">
+    <div class="unesting-editor-pane-group">Optionen</div>
     <div ng-repeat="property in settingsProperties" class="umb-nested-content-property-container">
 
       <umb-property property="property" unesting-property="{{property.propertyAlias}}" ng-class="{'umb-nested-content--not-supported': property.notSupported}">

@@ -76,7 +76,8 @@ angular.module('umbraco.directives').directive('unMedia', function ($http, $comp
       titleKey: '@',
       limit: '@',
       size: '@',
-      hideLabel: '@'
+      hideLabel: '@',
+      hasSource: '@'
     },
 
     template: '<div class="unesting-media" unesting-size="{{_size}}">' +
@@ -142,10 +143,7 @@ angular.module('umbraco.directives').directive('unMedia', function ($http, $comp
         ids = _.filter(ids.split(','), function (id) { return !!id; });
         scope.count = ids.length;
 
-        var query = "ids=" + ids.slice(0, limit).join('&ids=');
-        var url = $http.get(Umbraco.Sys.ServerVariables.umbracoSettings.umbracoPath + "/backoffice/UmbracoApi/Unesting/GetMediaByUdis?" + query);
-
-        umbRequestHelper.resourcePromise(url, 'Failed to retrieve data for media ids').then(function (result)
+        var handleResult = function (result)
         {
           _.each(result, function (src, id)
           {
@@ -161,7 +159,21 @@ angular.module('umbraco.directives').directive('unMedia', function ($http, $comp
           {
             element.closest('.unesting-item-header').addClass('no-label');
           }
-        });
+        };
+
+        if (scope.model && scope.hasSource)
+        {
+          handleResult(ids);
+        }
+        else
+        {
+          var query = "ids=" + ids.slice(0, limit).join('&ids=');
+          var url = $http.get(Umbraco.Sys.ServerVariables.umbracoSettings.umbracoPath + "/backoffice/UmbracoApi/Unesting/GetMediaByUdis?" + query);
+          umbRequestHelper.resourcePromise(url, 'Failed to retrieve data for media ids').then(function (result)
+          {
+            handleResult(result);
+          });
+        }
       }
 
       render();
@@ -314,11 +326,12 @@ angular.module('umbraco.directives').directive('unFigure', function ($filter)
       headline: '=',
       size: '@',
       maxLines: '@',
-      hideLabel: '@'
+      hideLabel: '@',
+      hasSource: '@'
     },
 
     template: '<div class="unesting-figure" ng-if="hasContent">' +
-      '<un-media ng-if="image" model="image" size="{{size}}" />' +
+      '<un-media ng-if="image" model="image" size="{{size}}" has-source="{{hasSource}}" />' +
       '<div class="unesting-figure-content">' +
       '<span class="unesting-figure-headline" ng-if="headline">{{headline | unHtml }}</span>' +
       '<span class="unesting-figure-text" ng-if="text" ng-style="{ \'max-height\': \'{{maxLines * 20}}px\', \'-webkit-line-clamp\': {{maxLines}} }">{{text | unHtml:800 }}</span>' +
@@ -414,17 +427,15 @@ angular.module("umbraco.directives").directive('uNestingContentEditor', [
 
         $scope.contentProperties = _.filter(contentTab.properties, function (prop)
         {
-          return prop.propertyAlias.toLowerCase() !== 'unestinghide';
+          var alias = prop.propertyAlias.toLowerCase();
+          return alias.indexOf('unesting') !== 0;
         });
 
-        //var settingsTab = _.find($scope.tabs, function (tab)
-        //{
-        //  var alias = tab.alias.toLowerCase();
-        //  return tab.id !== 0 && alias === 'unestingsettings';
-        //});
-
-        //$scope.settingsProperties = settingsTab ? settingsTab.properties : [];
-        $scope.settingsProperties = [];
+        $scope.settingsProperties = _.filter(contentTab.properties, function (prop)
+        {
+          var alias = prop.propertyAlias.toLowerCase();
+          return alias.indexOf('unesting') === 0 && alias !== 'unestinghide';
+        });
       };
 
       // Listen for incoming changes
