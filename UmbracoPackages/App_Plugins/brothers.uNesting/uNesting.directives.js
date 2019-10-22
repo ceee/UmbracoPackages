@@ -12,6 +12,7 @@ angular.module('umbraco.directives').directive('unContent', function ($compile)
     },
     link: function (scope, element)
     {
+      var content = null;
 
       // get template
       var template = scope.config && scope.config.nameTemplate ? scope.config.nameTemplate : null;
@@ -31,6 +32,11 @@ angular.module('umbraco.directives').directive('unContent', function ($compile)
       // compile & render template
       function render()
       {
+        if (content === JSON.stringify(scope.item))
+        {
+          return;
+        }
+
         // merge element values into local scope
         angular.merge(scope, scope.item);
 
@@ -45,6 +51,8 @@ angular.module('umbraco.directives').directive('unContent', function ($compile)
         // create html and compile
         element.html(template);
         $compile(element.contents())(scope);
+
+        content = JSON.stringify(scope.item);
       }
 
       var unsubscribe = scope.$watch('item', function (value)
@@ -468,7 +476,6 @@ angular.module("umbraco.directives").directive('uNestingContentEditor', [
           {
             if (tab.alias.toLowerCase() === $scope.selectedTab.alias.toLowerCase())
             {
-
               var localPropsMap = $scope.selectedTab.properties.reduce(function (map, obj)
               {
                 map[obj.alias] = obj;
