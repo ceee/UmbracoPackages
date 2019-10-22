@@ -594,14 +594,12 @@ un-config
 
 .unesting-picker input.search-query
 {
-  font-weight: 400;
-  font-size: 14px;
-  border-color: transparent;
-  border-radius: 18px;
-  height: 40px;
-  padding-top: 6px;
-  box-shadow: 0 1px 1px 0 rgba(0,0,0,.10);
   background: #faf8f8;
+}
+
+.unesting-picker input.search-query:focus
+{
+  border-color: transparent;
 }
 
 .unesting-picker .form-search .icon-search

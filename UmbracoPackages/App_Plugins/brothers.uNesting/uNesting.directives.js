@@ -5,15 +5,28 @@ angular.module('umbraco.directives').directive('unContent', function ($compile)
   return {
     restrict: 'E',
     scope: {
-      item: '=',
-      node: '=',
-      config: '='
+      item: '<',
+      node: '<',
+      config: '<',
+      template: '<'
     },
     link: function (scope, element)
     {
 
       // get template
       var template = scope.config && scope.config.nameTemplate ? scope.config.nameTemplate : null;
+
+      if (scope.template)
+      {
+        if (typeof scope.template === 'function')
+        {
+          template = scope.template();
+        }
+        else if (typeof scope.template === 'string')
+        {
+          template = scope.template;
+        }
+      }
 
       // compile & render template
       function render()
@@ -34,13 +47,6 @@ angular.module('umbraco.directives').directive('unContent', function ($compile)
         $compile(element.contents())(scope);
       }
 
-      //var unsubscribe = scope.$on("ncSyncVal", function (ev, args)
-      //{
-      //  if (args.key === scope.node.key)
-      //  {
-      //    render();
-      //  }
-      //});
       var unsubscribe = scope.$watch('item', function (value)
       {
         render();
