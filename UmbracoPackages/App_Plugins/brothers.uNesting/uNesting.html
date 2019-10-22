@@ -83,8 +83,8 @@
     </div>
 
     <div class="unesting-footer" ng-hide="hasContentTypes === false || nodes.length >= maxItems">
-      <button type="button" class="btn btn-action" ng-class="{ '--disabled': !scaffolds.length }" ng-click="openNodeTypePicker($event)">
-        <localize key="grid_addElement"></localize>
+      <button type="button" class="btn btn-action" ng-disabled="!scaffolds.length || model.readonly" ng-class="{ '--disabled': !scaffolds.length }" ng-click="openNodeTypePicker($event)">
+        <localize key="unesting_add"></localize>
       </button>
     </div>
 

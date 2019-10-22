@@ -1,11 +1,20 @@
 ﻿
+/* SCROLLBARS
+/* **********************************************************
+/* thin scrollbars
+/* ********************************************************** */
+* 
+{
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0,0,0,0.2) transparent;
+}
+
 
 /* BUTTONS
 /* **********************************************************
 /* make buttons bigger and better clickable
 /* includes actions buttons which appear in dropdown lists
 /* ********************************************************** */
-
 .btn, .btn-group > .btn, .btn-group > .dropdown-menu, .btn-group > .popover
 {
   font-size: 14px;
@@ -44,6 +53,16 @@
   text-decoration: none;
   background-color: rgba(2,0,0,0.05);
   border-radius: 3px;
+}
+
+.btn-white
+{
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,.10);
+}
+
+.umb-editor-header .btn-white
+{
+  box-shadow: none;
 }
 
 
@@ -165,12 +184,12 @@ input.umb-editor-header__name-input
 
 .form-horizontal .control-label
 {
-  width: 200px;
+  width: 240px;
 }
 
 .form-horizontal .controls
 {
-  margin-left: 220px;
+  margin-left: 260px;
 }
 
 .form-search .search-input, input.search-query
@@ -178,7 +197,7 @@ input.umb-editor-header__name-input
   font-weight: 400;
   font-size: 14px;
   border-color: transparent;
-  border-radius: 18px;
+  border-radius: 3px;
   height: 40px;
   padding-top: 6px;
   box-shadow: 0 1px 1px 0 rgba(0,0,0,.10);
@@ -186,9 +205,10 @@ input.umb-editor-header__name-input
 
 .form-search .inner-addon [class*=" icon-"], .form-search .inner-addon [class^="icon-"], .form-search .icon
 {
-  top: 5px;
+  top: 4px;
   left: auto;
   right: 8px;
+  color: #817f85;
 }
 
 .form-search .inner-addon input[type="text"]
@@ -203,14 +223,21 @@ input.umb-editor-header__name-input
   border-color: transparent;
 }
 
+.umb-checkmark--xs
+{
+  font-size: 10px;
+}
 
+.umb-form-check__input:checked ~ .umb-form-check__state .umb-form-check__check
+{
+  border-color: #bbbabf;
+}
 
 /* TREE
 /* **********************************************************
 /* The tree needs more clickable space per item and a
 /* softer active state
 /* ********************************************************** */
-
 .umb-tree-icon
 {
   margin: 0 15px 0 5px;
@@ -281,12 +308,16 @@ input.umb-editor-header__name-input
 }
 
 .umb-editor-sub-header
-{
-  padding-bottom: 20px;
+{ 
   border-bottom: 1px solid #e9e9eb;
   /*border-left: none;
   border-right: none;*/
   margin: -10px -5px 15px;
+}
+
+.umb-editor-sub-header:not(.--state-selection)
+{
+  padding-bottom: 20px;
 }
 
 .umb-editor-sub-header.-umb-sticky-bar
@@ -334,6 +365,11 @@ input.umb-editor-header__name-input
   margin-left: 0;
 }
 
+.umb-panel-header-name
+{
+  font-size: 15px;
+}
+
 
 
 /* BOXES
@@ -342,9 +378,18 @@ input.umb-editor-header__name-input
 /* ********************************************************** */
 .umb-box-header, .umb-group-panel__header
 {
-  padding: 20px 20px;
+  padding: 14px 20px;
   background: #faf8f8;
   border-radius: 3px 3px 0 0;
+}
+
+.umb-box.no-sep .umb-box-header, .umb-box.no-sep .umb-group-panel__header
+{
+  background: none;
+  border-bottom: none;
+  border-radius: 0;
+  padding: 20px;
+  padding-bottom: 10px;
 }
 
 
@@ -367,6 +412,11 @@ input.umb-editor-header__name-input
 .umb-table-head .umb-table-cell
 {
   padding: 12px 2px;
+}
+
+.umb-table-body .umb-table-cell
+{
+  padding: 14px 2px;
 }
 
 .umb-table-head
